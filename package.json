@@ -1,0 +1,29 @@
+{
+    "name": "learntic-authentication-ms",
+    "version": "1.0.0",
+    "description": "authentication-ms",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/arvelasquezva/learntic-authentication-ms.git"
+    },
+    "author": "Diego Armando Velasquez Vargas",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/arvelasquezva/learntic-authentication-ms/issues"
+    },
+    "homepage": "https://github.com/arvelasquezva/learntic-authentication-ms#readme",
+    "dependencies": {
+        "bcrypt-nodejs": "0.0.3",
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "jshint": "^2.12.0",
+        "jwt-simple": "^0.5.6",
+        "moment": "^2.24.0",
+        "mongoose": "^5.10.7",
+        "save": "^2.4.0"
+    }
+}
