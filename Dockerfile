@@ -1,7 +1,7 @@
 #base image based in node.js
 FROM node:12
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
@@ -11,5 +11,5 @@ COPY . .
 
 EXPOSE 3001
 
-CMD [ "npm","start"]
+CMD [ "node","index.js"]
 
