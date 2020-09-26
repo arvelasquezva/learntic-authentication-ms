@@ -1,7 +1,7 @@
 #base image based in node.js
 FROM node:12
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY package*.json ./
 
