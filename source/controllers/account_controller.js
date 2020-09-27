@@ -2,7 +2,7 @@
 const Account = require("../models/account_model");
 const Service = require("../service/index");
 
-function singUp(req, res) {
+function signUp(req, res) {
     const account = new Account({
         nickName: req.body.nickName,
         password: req.body.password,
@@ -20,7 +20,7 @@ function singUp(req, res) {
     });
 }
 
-function singIn(req, res) {
+function signIn(req, res) {
     Account.findOne({ nickName: req.body.nickName }, (err, account) => {
         if (err) return res.status(500).send({ message: `error: ${err}` });
         if (!account)
@@ -43,6 +43,6 @@ function singIn(req, res) {
 }
 
 module.exports = {
-    singIn,
-    singUp,
+    signIn,
+    signUp,
 };

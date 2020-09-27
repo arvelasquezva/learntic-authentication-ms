@@ -14,6 +14,23 @@ const AccountSchema = Schema({
     }
 });
 
+
+AccountSchema.pre('save', function(next) {
+    let account = this;
+    if (!account.isModified('password')) return next()
+
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) return next()
+
+        bcrypt.hash(account.password, salt, null, (err, hash) => {
+            if (err) return next(err)
+
+            account.password = hash;
+            next();
+        })
+    })
+})
+
 AccountSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
