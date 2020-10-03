@@ -16,19 +16,19 @@ function createToken(account) {
 function decodeToken(Token) {
     const decoded = new Promise((resolve, reject) => {
         try {
-            const payload = jwt.decode(Token, config.secret_token);
+            const payload = jwt.decode(Token, config.secret_token)
             if (payload.exp <= moment().unix()) {
                 reject({
                     status: 401,
-                    message: `error: ${payload}`
+                    message: 'el token ha expirado'
                 })
             }
-            resolve(payload)
+            resolve(payload);
 
         } catch (err) {
             reject({
                 status: 500,
-                message: `Token Invalido + ${payload}`
+                message: 'Token invalido'
             })
         }
     })
