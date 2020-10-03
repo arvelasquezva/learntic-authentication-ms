@@ -10,13 +10,13 @@ function createToken(account) {
         exp: moment().add(14, 'days').unix()
     }
 
-    return jwt.encode(payload, config.SECRET_TOKEN);
+    return jwt.encode(payload, config.secret_token);
 }
 
 function decodeToken(Token) {
     const decoded = new Promise((resolve, reject) => {
         try {
-            const payload = jwt.decode(Token, config.SECRET_TOKEN)
+            const payload = jwt.decode(Token, config.secret_token);
             if (payload.exp <= moment().unix()) {
                 reject({
                     status: 401,
