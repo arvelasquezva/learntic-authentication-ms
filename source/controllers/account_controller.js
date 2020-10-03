@@ -42,7 +42,26 @@ function signIn(req, res) {
     });
 }
 
+function authorization(req, res) {
+    const token = req.body.token;
+    Service.decodeToken(token)
+        .then(response => {
+            req.account = response
+            res.status(200).send({
+                authorization: true,
+                message: 'estas autorizado'
+            })
+        })
+        .catch(response => {
+            res.status(response.status).send({
+                authorization: false,
+                message: response.message
+            })
+        })
+}
+
 module.exports = {
     signIn,
     signUp,
+    authorization
 };

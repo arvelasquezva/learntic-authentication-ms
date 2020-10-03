@@ -2,24 +2,22 @@
 const Token = require("../models/token_model");
 const Service = require("../service/index");
 
-function tokenI(req, res, next) {
-    const token = req.token;
-    Service.decodeToken(token)
-        .then(response => {
-            req.account = response
-            res.status(200).send({
-                authorization: true,
-                message: 'estas autorizado'
-            })
+function token(req, res, next) {
+    let t = req.body.token;
+    Token.findOne({ token: t }, (err, tokenF) => {
+        if (err) return res.status(500).send({
+            authorization: false,
+            message: `internal server error ${err}`
         })
-        .catch(response => {
-            res.status(response.status).send({
-                authorization: false,
-                message: response.message
-            })
+        if (tokenF) return res.status(401).send({
+            authorization: false,
+            message: 'token en blacklist'
         })
+        next()
+    })
 }
 
+
 module.exports = {
-    tokenI,
+    token
 };

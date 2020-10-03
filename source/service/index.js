@@ -16,7 +16,7 @@ function createToken(account) {
 function decodeToken(Token) {
     const decoded = new Promise((resolve, reject) => {
         try {
-            const payload = jwt.decode(Token, config.secret_token);
+            const payload = jwt.decode(Token, config.secret_token)
             if (payload.exp <= moment().unix()) {
                 reject({
                     status: 401,
@@ -26,10 +26,9 @@ function decodeToken(Token) {
             resolve(payload);
 
         } catch (err) {
-            const pront = jwt.decode(Token, config.secret_token);
             reject({
                 status: 500,
-                message: `error al crear el usuario ${pront}`
+                message: 'Token invalido'
             })
         }
     })
