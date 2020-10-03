@@ -20,7 +20,7 @@ function decodeToken(Token) {
             if (payload.exp <= moment().unix()) {
                 reject({
                     status: 401,
-                    message: 'El token ha expirado'
+                    message: `error: ${payload}`
                 })
             }
             resolve(payload)
@@ -28,7 +28,7 @@ function decodeToken(Token) {
         } catch (err) {
             reject({
                 status: 500,
-                message: 'Token Invalido'
+                message: `Token Invalido + ${payload}`
             })
         }
     })
