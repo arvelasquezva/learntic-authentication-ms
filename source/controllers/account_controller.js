@@ -4,7 +4,7 @@ const Service = require("../service/index");
 
 function signUp(req, res) {
     const account = new Account({
-        nickName: req.body.nickName,
+        username: req.body.username,
         password: req.body.password,
     });
 
@@ -14,14 +14,14 @@ function signUp(req, res) {
                 .status(500)
                 .send({ message: `error al crear el usuario ${err}` });
         res.status(201).send({
-            nickName: account.nickName,
+            username: account.username,
             token: Service.createToken(account),
         });
     });
 }
 
 function signIn(req, res) {
-    Account.findOne({ nickName: req.body.nickName }, (err, account) => {
+    Account.findOne({ username: req.body.username }, (err, account) => {
         if (err) return res.status(500).send({ message: `error: ${err}` });
         if (!account)
             return res.status(404).send({ message: "no existe la cuenta" });
@@ -35,7 +35,7 @@ function signIn(req, res) {
 
             req.account = account;
             res.status(200).send({
-                nickName: account.nickName,
+                username: account.username,
                 token: Service.createToken(account),
             });
         });
