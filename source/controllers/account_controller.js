@@ -53,7 +53,7 @@ function authorization(req, res) {
             })
         })
         .catch(response => {
-            res.status(response.status).send({
+            res.status(200).send({
                 authorization: false,
                 message: response.message
             })
