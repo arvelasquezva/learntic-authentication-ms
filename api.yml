@@ -1,0 +1,94 @@
+swagger: '2.0'
+info:
+  version: 1.0
+  title: Authentication microservice
+  description: JavaScript microservices para autenticar el sistema
+host: host:3001
+basePath: /
+schemes:
+  - http
+consumes:
+    - "application/json"
+produces:
+    - "application/json"
+paths:
+  /signUp:
+    post:
+        summary: Creates a new Account
+      parameters:
+        - name: account
+          in: body
+          required: true
+          description: account Object
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ModelError'
+  /signIn:
+    post:
+      summary: find the account with the given id and check the password
+      parameters:
+        - name: account
+          in: body
+          required: true
+          description: account Object
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: logged in server
+          schema:
+            $ref: '#/definitions/authModel'
+        '404':
+          description: wrong data / not found
+          schema:
+            $ref: '#/definitions/ModelError'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ModelError'
+  /auth:
+    post:
+        summary: check the token reciben is created by the system
+        parameters:
+          - name: authorization
+            type: string
+            required: true
+            description: a variable token in body
+        responses:
+          '200':
+            description: authorizated 
+          '200':
+            description: unauthorized
+definitions:
+  Account:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  authModel:
+    type: object
+    properties:
+      authorization: 
+        type: boolean
+      message: 
+        type: string
+  tokenModel:
+    type: object
+    properties:
+      username:
+        type: string
+      token:
+        type: string
+  ModelError:
+    type: object
+    properties:
+      message:
+        type: string
