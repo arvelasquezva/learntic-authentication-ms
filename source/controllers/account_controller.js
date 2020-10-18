@@ -1,5 +1,5 @@
 "use strict";
-var FormData = require('form-data');
+var FormData = require("form-data");
 const Account = require("../models/account_model");
 const Service = require("../service/index");
 const axios = require("axios");
@@ -13,15 +13,14 @@ function signUp(req, res) {
     bodyFormData.append("username", account.username);
     console.log(bodyFormData);
 
-    axios({
-        method: "post",
-        url: "http://34.205.114.201:8081/users",
-        data: bodyFormData,
-    }).then((res) => {
-        console.log(res);
-    }).catch((err) => {
-        console.log("Esto es un error", err);
-    });
+    axios
+        .post("http://34.205.114.201:8081/users", bodyFormData)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log("Esto es un error", err);
+        });
 
     account.save((err) => {
         if (err)
