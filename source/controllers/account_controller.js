@@ -1,18 +1,23 @@
 "use strict";
 const Account = require("../models/account_model");
 const Service = require("../service/index");
-const axios = require('axios');
+const axios = require("axios");
 
 function signUp(req, res) {
     const account = new Account({
         username: req.body.username,
         password: req.body.password,
     });
+    var bodyFormData = new FormData();
+    bodyFormData.append("username", account.username);
 
-    axios.post("http://34.205.114.201:8081/users", Account.username)
-        .then((res) => {
-            console.log(res);
-        });
+    axios({
+        method: "post",
+        url: "34.205.114.201:8081/user",
+        data: bodyFormData,
+    }).then((res) => {
+        console.log(res);
+    });
 
     account.save((err) => {
         if (err)
@@ -51,23 +56,23 @@ function signIn(req, res) {
 function authorization(req, res) {
     const token = req.body.token;
     Service.decodeToken(token)
-        .then(response => {
-            req.account = response
+        .then((response) => {
+            req.account = response;
             res.status(200).send({
                 authorization: true,
-                message: 'estas autorizado'
-            })
+                message: "estas autorizado",
+            });
         })
-        .catch(response => {
+        .catch((response) => {
             res.status(200).send({
                 authorization: false,
-                message: response.message
-            })
-        })
+                message: response.message,
+            });
+        });
 }
 
 module.exports = {
     signIn,
     signUp,
-    authorization
+    authorization,
 };
