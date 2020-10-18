@@ -11,6 +11,7 @@ function signUp(req, res) {
     });
     var bodyFormData = new FormData();
     bodyFormData.append("username", account.username);
+    console.log(bodyFormData);
 
     axios({
         method: "post",
