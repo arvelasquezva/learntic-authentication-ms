@@ -1,11 +1,17 @@
 "use strict";
 const Account = require("../models/account_model");
 const Service = require("../service/index");
+const axios = require('axios');
 
 function signUp(req, res) {
     const account = new Account({
         username: req.body.username,
         password: req.body.password,
+    });
+
+    axios.post("httt://34.205.114.201:8081/users", username)
+    .then((res)=>{
+        console.log(res);
     });
 
     account.save((err) => {
