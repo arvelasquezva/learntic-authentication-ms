@@ -1,5 +1,6 @@
 "use strict";
 var FormData = require("form-data");
+var querystring = require('querystring');
 const Account = require("../models/account_model");
 const Service = require("../service/index");
 const axios = require("axios");
@@ -9,21 +10,34 @@ function signUp(req, res) {
         username: req.body.username,
         password: req.body.password,
     });
-    var bodyFormData = new FormData();
-    bodyFormData.append("username", account.username);
-    console.log(bodyFormData);
 
-    axios
-        .post("http://34.205.114.201:8081/users", bodyFormData, {
-            headers: bodyFormData.getHeaders()
-        })
-        .then((res) => {
+    axios.post("http://34.205.114.201:8081/users", querystring.stringify({
+            username: account.username
+        }), {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then((res) => {
             console.log(res);
         })
         .catch((err) => {
             console.log("Esto es un error", err);
         });
+    /*    var formData = new FormData();
+        formData.append("username", account.username);
+        console.log(formData);
 
+        axios
+            .post("http://34.205.114.201:8081/users", formData, {
+                headers: formData.getHeaders()
+            })
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log("Esto es un error", err);
+            });
+     */
     account.save((err) => {
         if (err)
             return res
