@@ -6,9 +6,10 @@ const Service = require("../service/index");
 const axios = require("axios");
 
 function signUp(req, res) {
-    const account = new Account({
+    let account = new Account({
         username: req.body.username,
         password: req.body.password,
+        uid: ""
     });
 
     axios.post("http://34.205.114.201:8081/users", querystring.stringify({
@@ -18,7 +19,7 @@ function signUp(req, res) {
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         }).then((res) => {
-            console.log(res);
+            account.uid = res.data.uid;
         })
         .catch((err) => {
             console.log("Esto es un error", err);

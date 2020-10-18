@@ -11,6 +11,9 @@ const AccountSchema = Schema({
     },
     password: {
         type: String
+    },
+    uid: {
+        type: String
     }
 });
 
