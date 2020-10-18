@@ -9,10 +9,10 @@ function signUp(req, res) {
         password: req.body.password,
     });
 
-    axios.post("httt://34.205.114.201:8081/users", Account.username)
-    .then((res)=>{
-        console.log(res);
-    });
+    axios.post("http://34.205.114.201:8081/users", Account.username)
+        .then((res) => {
+            console.log(res);
+        });
 
     account.save((err) => {
         if (err)
