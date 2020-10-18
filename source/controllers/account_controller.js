@@ -1,4 +1,5 @@
 "use strict";
+var FormData = require('form-data');
 const Account = require("../models/account_model");
 const Service = require("../service/index");
 const axios = require("axios");
