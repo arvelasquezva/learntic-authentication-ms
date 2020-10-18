@@ -14,7 +14,7 @@ function signUp(req, res) {
 
     axios({
         method: "post",
-        url: "34.205.114.201:8081/user",
+        url: "http://34.205.114.201:8081/user",
         data: bodyFormData,
     }).then((res) => {
         console.log(res);
