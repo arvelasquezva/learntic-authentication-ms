@@ -14,7 +14,9 @@ function signUp(req, res) {
     console.log(bodyFormData);
 
     axios
-        .post("http://34.205.114.201:8081/users", bodyFormData)
+        .post("http://34.205.114.201:8081/users", bodyFormData, {
+            headers: bodyFormData.getHeaders()
+        })
         .then((res) => {
             console.log(res);
         })
