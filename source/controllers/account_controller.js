@@ -18,6 +18,8 @@ function signUp(req, res) {
         data: bodyFormData,
     }).then((res) => {
         console.log(res);
+    }).catch((err) => {
+        console.log("Esto es un error", err);
     });
 
     account.save((err) => {
