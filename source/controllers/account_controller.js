@@ -5,14 +5,14 @@ const Account = require("../models/account_model");
 const Service = require("../service/index");
 const axios = require("axios");
 
-function signUp(req, res) {
+async function signUp(req, res) {
     let account = new Account({
         username: req.body.username,
         password: req.body.password,
         uid: ""
     });
 
-    axios.post("http://34.205.114.201:8081/users", querystring.stringify({
+    await axios.post("http://34.205.114.201:8081/users", querystring.stringify({
             username: account.username
         }), {
             headers: {
