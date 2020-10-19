@@ -54,6 +54,7 @@ function signIn(req, res) {
             res.status(200).send({
                 username: account.username,
                 token: Service.createToken(account),
+                uid: account.uid
             });
         });
     });
