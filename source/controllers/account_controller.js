@@ -24,21 +24,6 @@ async function signUp(req, res) {
         .catch((err) => {
             console.log("Esto es un error", err);
         });
-    /*    var formData = new FormData();
-        formData.append("username", account.username);
-        console.log(formData);
-
-        axios
-            .post("http://34.205.114.201:8081/users", formData, {
-                headers: formData.getHeaders()
-            })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log("Esto es un error", err);
-            });
-     */
     account.save((err) => {
         if (err)
             return res
@@ -47,6 +32,7 @@ async function signUp(req, res) {
         res.status(201).send({
             username: account.username,
             token: Service.createToken(account),
+            uid: account.uid
         });
     });
 }
