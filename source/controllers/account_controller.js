@@ -15,7 +15,9 @@ async function signUp(req, res) {
     });
 
     await axios.post("http://34.205.114.201:8081/users", querystring.stringify({
-            username: account.username
+            username: account.username,
+            fullname: account.name,
+            age: account.age
         }), {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
