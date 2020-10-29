@@ -14,6 +14,12 @@ const AccountSchema = Schema({
     },
     uid: {
         type: String
+    },
+    name: {
+        type: String
+    },
+    age: {
+        type: Int
     }
 });
 

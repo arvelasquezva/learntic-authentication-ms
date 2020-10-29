@@ -9,7 +9,9 @@ async function signUp(req, res) {
     let account = new Account({
         username: req.body.username,
         password: req.body.password,
-        uid: ""
+        name: req.body.name,
+        age: req.body.age,
+        uid: "",
     });
 
     await axios.post("http://34.205.114.201:8081/users", querystring.stringify({
@@ -32,7 +34,9 @@ async function signUp(req, res) {
         res.status(201).send({
             username: account.username,
             token: Service.createToken(account),
-            uid: account.uid
+            uid: account.uid,
+            name: account.name,
+            age: account.age
         });
     });
 }
@@ -54,7 +58,9 @@ function signIn(req, res) {
             res.status(200).send({
                 username: account.username,
                 token: Service.createToken(account),
-                uid: account.uid
+                uid: account.uid,
+                name: account.name,
+                age: account.age
             });
         });
     });
