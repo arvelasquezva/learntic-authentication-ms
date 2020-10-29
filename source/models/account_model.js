@@ -19,7 +19,7 @@ const AccountSchema = Schema({
         type: String
     },
     age: {
-        type: Int
+        type: Number
     }
 });
 
